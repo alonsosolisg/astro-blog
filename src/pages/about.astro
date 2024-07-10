@@ -1,19 +1,56 @@
 ---
+const pageTitle = "About Me";
 
+const identity = {
+  name: "Astro",
+  description: "A delightful static site generator",
+  url: "https://astro.build",
+  companiesThatUseAstro: [
+    "Shopify",
+    "Atlassian",
+    "Slack",
+    "Lyft",
+    "Airbnb",
+    "GitHub",
+  ],
+};
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>About</title>
-	</head>
-	<body>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/blog">Blog</a>
-		<h1>About</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/blog">Blog</a>
+    <h1>{pageTitle}</h1>
+
+    <p>
+      {identity.name} is {identity.description}. Learn more at
+      <a href={identity.url}>{identity.url}</a>.
+    </p>
+    <ul>
+      {identity.companiesThatUseAstro.map((company) => <li>{company}</li>)}
+    </ul>
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {
+      goal === 3 ? (
+        <p>My goal is to finish in 3 days.</p>
+      ) : (
+        <p>My goal is not 3 days.</p>
+      )
+    }
+  </body>
 </html>
