@@ -1,8 +1,10 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+import BlogPost from "../components/BlogPost.astro";
 
-const allPosts = await Astro.glob("./posts/*.md");
+const allPosts = await getCollection("posts");
 ---
 
 <html lang="en">
@@ -21,7 +23,7 @@ const allPosts = await Astro.glob("./posts/*.md");
       {
         allPosts.map((post) => (
           <li>
-            <a href={post.url}>{post.frontmatter.title}</a>
+            <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} />
           </li>
         ))
       }
